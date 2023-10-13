@@ -447,8 +447,7 @@ class LlavaLens(AbstractLensModel):
         model: LlavaLlamaForCausalLM = load_model_with_cache(  # type: ignore
             
             model_fn=lambda: LlavaLlamaForCausalLM.from_pretrained(
-                "liuhaotian/llava-llama-2-13b-chat-lightning-preview",
-                # model_path,
+                model_path,
                 # low_cpu_mem_usage=True,
                 config=cfg_pretrained,
                 torch_dtype=model_dtype,
@@ -457,8 +456,7 @@ class LlavaLens(AbstractLensModel):
             model_id_components=(Path(model_path), model_dtype),
         )
 
-        tokenizer: LlamaTokenizer = AutoTokenizer.from_pretrained(#model_path,
-                                                                 "liuhaotian/llava-llama-2-13b-chat-lightning-preview",
+        tokenizer: LlamaTokenizer = AutoTokenizer.from_pretrained(model_path,
                                                                  use_fast=False, legacy=False)  # type: ignore
         tokenizer.add_special_tokens(
             {
